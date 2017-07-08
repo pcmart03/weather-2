@@ -20,6 +20,9 @@ class WeatherFormatter(object):
     def get_percent(self, ratio):
         return "{0:.0f}%".format(ratio * 100)
 
+    def format_temp(self, datapoint):
+        return round(datapoint["temperature"])
+
     def draw_forecast(self):
         """Returns a texttable object containing the forecast."""
         header = [
@@ -30,14 +33,14 @@ class WeatherFormatter(object):
         row = []
         table = Texttable()
 
-        table.set_deco(Texttable.HEADER)
+        # table.set_deco(Texttable.HLINES | Texttable.HEADER)
         table.set_cols_align(['l', 'c', 'l', 'c'])
         table.add_row(header)
 
         for data_point in self.data:
             table.add_row([
                 self.format_time_period(data_point["time"]),
-                data_point["temperature"],
+                self.format_temp(data_point),
                 data_point["summary"],
                 self.get_percent(data_point["precipProbability"])
                 ])

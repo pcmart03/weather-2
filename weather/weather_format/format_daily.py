@@ -20,3 +20,10 @@ class FormatDaily(WeatherFormatter):
         """Returns time in format Mon 02/10"""
         time = datetime.fromtimestamp(timestamp)
         return datetime.strftime(time, "%a %m/%d")
+
+    def format_temp(self, datapoint):
+        """Returns Min:Max temp"""
+        minTemp = round(datapoint["temperatureMin"])
+        maxTemp = round(datapoint["temperatureMax"])
+
+        return "{minT} : {maxT}".format(minT=minTemp, maxT=maxTemp)

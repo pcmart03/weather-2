@@ -49,6 +49,16 @@ def hourly(config):
     click.echo(table.draw())
 
 
+@cli.command()
+@pass_config
+def week(config):
+    forecast = config.weather.get_daily()
+    formatted = FormatDaily(forecast)
+    table = formatted.draw_forecast()
+    click.echo("Weather for the next week")
+    click.echo(table.draw())
+
+
 if __name__ == "__main__":
     cli()
 
