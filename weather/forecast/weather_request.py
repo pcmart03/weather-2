@@ -58,8 +58,8 @@ class NewForecast(object):
 
     def get_daily(self):
         """Returns daily forcast."""
-        return self.forecast['daily']
+        return self.forecast['daily']["data"]
 
     def get_hourly(self):
         """Returns hourly forecast."""
-        return self.forecast['hourly']
+        return self.forecast['hourly']["data"]

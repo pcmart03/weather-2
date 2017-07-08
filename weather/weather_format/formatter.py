@@ -9,23 +9,28 @@ class WeatherFormatter(object):
     Arguments: forecast_type = current, hourly, or daily
                         data: = arraycontaining the weather data points
     """
-    def __init__(self, forecast_type, data):
-        self.type = forecast_type
+    def __init__(self, data):
         self.data = data
+        self.time_period = "Time"
 
     def format_time_period(self, timestamp):
-        """Overide in subclasses"""
+        """Overide in subclasses Returns formatted date of time for forecast"""
         return timestamp
 
     def get_percent(self, ratio):
         return "{0:.0f}%".format(ratio * 100)
 
-    def drawforecast(self):
-        header = [self.type, "Temp", "Summary", "Chance Perciptation"]
+    def draw_forecast(self):
+        """Returns a texttable object containing the forecast."""
+        header = [
+            self.time_period,
+            "Temp", "Summary",
+            "Chance Perciptation"
+            ]
         row = []
         table = Texttable()
 
-        table.set_deco(texttable.HEADER)
+        table.set_deco(Texttable.HEADER)
         table.set_cols_align(['l', 'c', 'l', 'c'])
         table.add_row(header)
 
