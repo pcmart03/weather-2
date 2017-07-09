@@ -1,9 +1,9 @@
 """This module contains the weather CLI"""
 
-from forecast.weather_request import NewForecast
-from settings import DEFAULT_CITY
-from weather_format.format_daily import FormatDaily
-from weather_format.format_hourly import FormatHourly
+from .forecast.weather_request import NewForecast
+from .settings import DEFAULT_CITY
+from .weather_format.format_daily import FormatDaily
+from .weather_format.format_hourly import FormatHourly
 
 import click
 
@@ -35,7 +35,7 @@ def current(config):
     forecast = config.weather.get_current()
     formatted = FormatHourly([forecast])
     table = formatted.draw_forecast()
-    click.echo("Current Conditions:")
+    click.echo("Current Conditions for {}:".format(config.city))
     click.echo(table.draw())
 
 
@@ -45,7 +45,7 @@ def hourly(config):
     forecast = config.weather.get_hourly()
     formatted = FormatHourly(forecast[:12])
     table = formatted.draw_forecast()
-    click.echo("Weather for the next twelve hours:")
+    click.echo("Weather for the next twelve hours in {}:".format(config.city))
     click.echo(table.draw())
 
 
@@ -55,10 +55,9 @@ def week(config):
     forecast = config.weather.get_daily()
     formatted = FormatDaily(forecast)
     table = formatted.draw_forecast()
-    click.echo("Weather for the next week")
+    click.echo("Weather for the next week in {}".format(config.city))
     click.echo(table.draw())
 
 
 if __name__ == "__main__":
     cli()
-

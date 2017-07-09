@@ -4,7 +4,7 @@ import json
 import sys
 import requests
 import geocoder
-import settings
+from .. import settings
 
 
 class NewForecast(object):
