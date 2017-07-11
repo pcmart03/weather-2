@@ -1,11 +1,10 @@
 """This module contains the weather CLI"""
 
+import click
 from .forecast.weather_request import NewForecast
 from .settings import DEFAULT_CITY
 from .weather_format.format_daily import FormatDaily
 from .weather_format.format_hourly import FormatHourly
-
-import click
 
 
 class Config(object):
